@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夢雲子的小筑</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6B8DD6 0%, #8E37D7 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
+            color: #666;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #8E37D7;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .music-player {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>夢雲子</h1>
+        <p>记录生活 分享美好</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#daily">日常</a>
+        <a href="#study">学习</a>
+        <a href="#share">转载</a>
+        <a href="#gallery">图片</a>
+        <a href="#music">音乐</a>
+    </nav>
+
+    <section id="daily" class="section">
+        <h2>📝 日常随笔</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>春日游记</h3>
+                <p>三月江南，烟雨朦胧...</p>
+            </div>
+            <!-- 更多卡片 -->
+        </div>
+    </section>
+
+    <section id="study" class="section">
+        <h2>📚 学习笔记</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>前端开发心得</h3>
+                <p>CSS Grid布局实践...</p>
+            </div>
+            <!-- 更多卡片 -->
+        </div>
+    </section>
+
+    <section id="share" class="section">
+        <h2>📌 精品转载</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>AI时代的设计思考</h3>
+                <p>转载自设计前沿...</p>
+            </div>
+            <!-- 更多卡片 -->
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <h2>📷 影像记忆</h2>
+        <div class="gallery">
+            <img src="placeholder.jpg" alt="图片1">
+            <img src="placeholder.jpg" alt="图片2">
+            <!-- 更多图片 -->
+        </div>
+    </section>
+
+    <section id="music" class="section">
+        <h2>🎵 音乐时光</h2>
+        <div class="music-player">
+            <!-- 嵌入音乐播放器代码 -->
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" 
+            width=330 height=86 
+            src="//music.163.com/outchain/player?type=2&id=1308818967&auto=0&height=66"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2023 夢雲子的小筑 - 保留所有权利</p>
+    </footer>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 导航栏高亮
+        window.addEventListener('scroll', () => {
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('nav a');
+            
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if(top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        document.querySelector('nav a[href*=' + id + ']').classList.add('active');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
