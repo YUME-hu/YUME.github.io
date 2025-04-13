@@ -3,138 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人网站</title>
+    <title>浮夢字节 | 梦澐子</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
             color: #333;
+            background: #f8f9fa;
         }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
+
+        /* 导航样式 */
+        .navbar {
+            padding: 1.5rem 5%;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-        nav {
+
+        .nav-links {
             display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 10px 0;
+            justify-content: flex-end;
+            gap: 2rem;
         }
-        nav a {
-            color: #fff;
+
+        .nav-links a {
             text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+
+        .nav-links a:hover {
+            color: #3498db;
         }
-        .intro, .skills, .projects, .contact {
-            margin-bottom: 40px;
-        }
-        .intro h2, .skills h2, .projects h2, .contact h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .skills ul, .projects ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-        }
-        .skills li, .projects li {
-            margin: 10px 0;
-        }
-        .contact form {
+
+        /* 首页横幅 */
+        .hero {
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: white;
         }
-        .contact input, .contact textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .hero button {
+            background: white;
+            color: #3498db;
+            padding: 1rem 2rem;
+            border: none;
             border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
         }
-        .contact button {
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
+
+        .hero button:hover {
+            background: #2980b9;
+            color: white;
+        }
+
+        /* 内容区块 */
+        section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        /* 项目展示 */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .project-info p {
+            color: #7f8c8d;
+        }
+
+        /* 联系表单 */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#about">关于</a>
+            <a href="#projects">项目</a>
+            <a href="#contact">联系</a>
+        </div>
+    </nav>
 
-<header>
-    <h1>欢迎来到我的个人网站</h1>
-</header>
-
-<nav>
-    <a href="#intro">简介</a>
-    <a href="#skills">技能</a>
-    <a href="#projects">项目</a>
-    <a href="#contact">联系</a>
-</nav>
-
-<div class="container">
-    <section id="intro" class="intro">
-        <h2>简介</h2>
-        <p>你好！我是一名热爱编程的开发者，专注于前端开发和用户体验设计。我热衷于学习新技术，并将其应用到实际项目中。</p>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>浮夢字节</h1>
+            <p>我是梦澐子，一名热爱技术与设计的开发者，专注创造有意义的数字体验。</p>
+            <button>探索更多</button>
+        </div>
     </section>
 
-    <section id="skills" class="skills">
-        <h2>技能</h2>
-        <ul>
-            <li>HTML5 & CSS3</li>
-            <li>JavaScript</li>
-            <li>React.js</li>
-            <li>Node.js</li>
-            <li>Git & GitHub</li>
-        </ul>
+    <section id="about">
+        <h2 class="section-title">关于我</h2>
+        <p>这里是梦澐子的个人空间，分享我的技术探索与创意实践。我专注于前端开发、UI/UX设计，以及将技术与艺术结合的创新项目。</p>
     </section>
 
-    <section id="projects" class="projects">
-        <h2>项目</h2>
-        <ul>
-            <li>个人博客系统</li>
-            <li>在线购物网站</li>
-            <li>任务管理应用</li>
-            <li>社交媒体平台</li>
-        </ul>
+    <section id="projects">
+        <h2 class="section-title">项目展示</h2>
+        <div class="projects">
+            <div class="project-card">
+                <img src="project1.jpg" alt="项目1">
+                <div class="project-info">
+                    <h3>浮夢博客</h3>
+                    <p>一个记录技术与生活的个人博客平台，使用Vue.js和Node.js构建。</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="project2.jpg" alt="项目2">
+                <div class="project-info">
+                    <h3>创意画廊</h3>
+                    <p>一个展示数字艺术作品的在线画廊，支持互动与分享功能。</p>
+                </div>
+            </div>
+            <!-- 添加更多项目卡片 -->
+        </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>联系我</h2>
-        <form action="#" method="post">
-            <input type="text" name="name" placeholder="你的名字" required>
-            <input type="email" name="email" placeholder="你的邮箱" required>
-            <textarea name="message" placeholder="你的留言" rows="5" required></textarea>
-            <button type="submit">发送</button>
+    <section id="contact">
+        <h2 class="section-title">联系我</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="姓名" required>
+            <input type="email" placeholder="邮箱" required>
+            <textarea rows="5" placeholder="留言..." required></textarea>
+            <button type="submit">发送信息</button>
         </form>
     </section>
-</div>
-
-<footer>
-    <p>&copy; 2023 我的个人网站. 保留所有权利.</p>
-</footer>
-
 </body>
 </html>
