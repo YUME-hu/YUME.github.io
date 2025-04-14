@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 复古终端</title>
+    <style>
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        .terminal-loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .terminal-loading::after {
+            content: "Booting Home Sector...";
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(40);
+        }
+    </style>
+</head>
+<body style="
+    background: #001100;
+    color: #00FF00;
+    font-family: 'Courier New', monospace;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+">
+
+<!-- CRT 扫描线效果 -->
+<div style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 0, 0.1) 0px,
+        rgba(0, 255, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 999;
+"></div>
+
+<div style="
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 3px solid #00FF00;
+    box-shadow: 0 0 20px #00FF0055;
+">
+
+    <!-- ASCII 艺术 -->
+    <pre style="
+        color: #00FF00;
+        text-align: center;
+        line-height: 1.2;
+        font-size: 12px;
+    ">
+  ██████╗ ██████╗ ██╗  ██╗
+ ██╔═████╗╚════██╗██║  ██║
+ ██║██╔██║ █████╔╝███████║
+ ████╔╝██║██╔═══╝ ╚════██║
+ ╚██████╔╝███████╗     ██║
+  ╚═════╝ ╚══════╝     ╚═╝
+    </pre>
+
+    <h1 style="
+        text-align: center;
+        font-size: 4em;
+        text-shadow: 0 0 10px #00FF00;
+        animation: blink 1s infinite;
+    ">404 ERROR</h1>
+
+    <p style="
+        border-top: 2px dashed #00FF00;
+        padding-top: 20px;
+        text-align: center;
+    ">
+        > 页面未找到 [STATUS CODE: 0x194]<br>
+        > 可能原因: 非法访问 / 数据丢失<br>
+        > 建议操作: 返回安全区域
+    </p>
+
+    <div style="
+        text-align: center;
+        margin-top: 30px;
+    ">
+        <a href="/" id="reboot-btn" style="
+            display: inline-block;
+            padding: 10px 30px;
+            background: #002200;
+            border: 2px solid #00FF00;
+            color: #00FF00;
+            text-decoration: none;
+            transition: all 0.3s;
+        " onmouseover="this.style.background='#00FF00';this.style.color='#001100'" 
+        onmouseout="this.style.background='#002200';this.style.color='#00FF00'">
+            [ 系统重启 ]
+        </a>
+    </div>
+    
+    <!-- 命令行加载动画 -->
+    <div class="terminal-loading" id="terminal-loading"></div>
+</div>
+
+<script>
+    // 预加载音效
+    const bootSound = new Audio('sounds/retro-boot-sound.mp3');
+    bootSound.preload = 'auto';
+
+    document.getElementById('reboot-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // 播放音效
+        bootSound.play().catch(error => {
+            console.log('音效播放被阻止:', error);
+        });
+        
+        // 显示加载动画
+        document.getElementById('terminal-loading').style.display = 'block';
+        
+        // 3秒后跳转
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 3000);
+    });
+</script>
+</body>
+</html>
